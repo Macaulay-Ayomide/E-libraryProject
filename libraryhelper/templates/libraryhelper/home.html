@@ -1,0 +1,44 @@
+<h1>HOME PAGE</h1>
+<a href="{% url 'approve' %}">Approved list</a>
+<a href="{% url 'overdue' %}">Overdue returnee's</a>
+<a href="{% url 'defaulters' %}">Defaulters</a>
+<a href="{% url 'addbook' %}">Add a book</a>
+<a href="{% url 'addcopy' %}">Add a copy</a>
+<a href="{% url 'approvecopylist' %}">Unapprove Copy List</a>
+<a href="{% url 'approvebooklist' %}">Unapprove Book List</a>
+<a href="{% url 'liberianlist' %}">Liberian list</a>
+<a href="{% url 'addliberian' %}">ADD A LIBERIAN</a>
+
+<h2>{{message}}</h2>
+{% if reservelist.count < 1 %} <p>No reservation was made</p> {% endif %}
+    {% if reservelist %}
+    {% for book in reservelist %}
+    <a href="{% url 'approvereserve' book.id %}">
+        <ul>
+            <li>{{book.firstname}}</li>
+            <li>{{book.surname}}</li>
+            <li>{{book.matric}}</li>
+            <li>{{book.department}}</li>
+            <li>{{book.school}}</li>
+        </ul>
+    </a>
+    {% endfor %}
+    {%endif%}
+
+    <form action="{% url 'searchreservation' %}">
+        <p>
+        <p>Book Search</p>
+        <ol>
+            <li><input type="radio" name="searchby" value="Firstname">Firstname</li>
+            <li><input type="radio" name="searchby" value="Surname">Surname</li>
+            <li><input type="radio" name="searchby" value="Department" checked>Department</li>
+            <li><input type="radio" name="searchby" value="School" checked>School</li>
+            <li><input type="radio" name="searchby" value="matric" checked>Matric</li>
+        </ol>
+        <P>
+            <label for="searchname">Name:
+                <input type="text" name="searchname" id="searchname"></label>
+        </P>
+        </p>
+        <p><input type="submit" value="Submit"> <input type="reset" value="Reset"></p>
+    </form>

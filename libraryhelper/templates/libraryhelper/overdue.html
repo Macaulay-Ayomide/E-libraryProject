@@ -1,0 +1,34 @@
+<h1>Overdue List</h1>
+{% if overduelist.count < 1 %} <p>No student defaulted on due date</p> {% endif %}
+    {% if overduelist %}
+    <h1>WOW</h1>
+    {% for book in overduelist %}
+    <a href="{% url 'approvestudent' book.id %}">
+        <ul>
+            <li>{{book.firstname}}</li>
+            <li>{{book.surname}}</li>
+            <li>{{book.matric}}</li>
+            <li>{{book.department}}</li>
+            <li>{{book.school}}</li>
+        </ul>
+    </a>
+    {% endfor %}
+    {%endif%}
+
+    <form action="{% url 'searchoverdue' %}">
+        <p>
+        <p>Overdue Search</p>
+        <ol>
+            <li><input type="radio" name="searchby" value="Firstname">Firstname</li>
+            <li><input type="radio" name="searchby" value="Surname">Surname</li>
+            <li><input type="radio" name="searchby" value="Department" checked>Department</li>
+            <li><input type="radio" name="searchby" value="School" checked>School</li>
+            <li><input type="radio" name="searchby" value="matric" checked>Matric</li>
+        </ol>
+        <P>
+            <label for="searchname">Name:
+                <input type="text" name="searchname" id="searchname"></label>
+        </P>
+        </p>
+        <p><input type="submit" value="Submit"> <input type="reset" value="Reset"></p>
+    </form>

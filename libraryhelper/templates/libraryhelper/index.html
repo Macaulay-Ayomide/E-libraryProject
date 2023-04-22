@@ -1,0 +1,126 @@
+{% extends "libraryhelper/base.html" %}
+
+{% load static %}
+{% block slider %}
+<div class="slider">
+    <div class="slider-item">
+        <img src="{% static 'images/istockphoto-1351018006-612x612.jpg' %}" alt="Banner 1">
+    </div>
+    <div class="slider-item">
+        <img src="{% static 'images/istockphoto-1353372066-170667a.jpg' %}" alt="Banner 2">
+    </div>
+    <div class="slider-item">
+        <img src="{% static 'images/istockphoto-1410572798-170667a.jpg' %}" alt="Banner 3">
+    </div>
+</div>
+
+<section class="welcome">
+    <h2>Welcome to our e-Library!</h2>
+    <p>Welcome to our e-Library, the ultimate digital destination for all your educational and research needs.
+        Our
+        e-Library is designed to provide you with easy access to a vast collection of digital books, journals,
+        research papers, and other educational resources, all from the comfort of your home or office.</p>
+
+    <p>With our user-friendly interface, you can easily search for and access the materials you need. We offer a
+        wide range of resources from various fields, including literature, science, technology, history, and
+        more.
+        Whether you're a student, researcher, or simply an avid reader, you'll find something of interest here.
+    </p>
+
+    <p>Our e-Library is available 24/7, so you can access it at any time, from anywhere in the world. You can
+        also
+        create a personalized account to save your favorite resources, create reading lists, and receive updates
+        on
+        new additions to the library.
+    </p>
+    <p>In addition to our extensive collection of digital resources, we offer online workshops and training
+        programs
+        on various topics. These programs are designed to help you develop new skills and stay up-to-date with
+        the
+        latest trends in your field.
+    </p>
+    <p>Our mission is to provide you with the resources and support you need to achieve your academic and
+        research
+        goals. Whether you're studying for an exam, conducting research for a project, or simply looking to
+        expand
+        your knowledge, our e-Library is here to help to check a book avalibility in our main premises and also
+        help
+        you make a reservation for a book.
+    </p>
+    <p>So start exploring our e-Library today and unlock a world of knowledge!</p>
+    <button>Explore Now</button>
+</section>
+<main>
+    <section>
+        {% for i in book %}
+        <div class="featured-resources">
+            <h3>Featured Resources</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="featured-resource-item">
+                        <img src="{{ i.bookimg.url }}" alt="Book Cover">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="featured-resource-item">
+                        <h4>{{i.booktitle}}</h4>
+                        <p>{{i.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <button>View More</button>
+    </section>
+    <section>
+        <h2>Upcoming Workshops</h2>
+        <ul>
+            <li><a href="#">Title of Workshop 1</a></li>
+            <li><a href="#">Title of Workshop 2</a></li>
+            <li><a href="#">Title of Workshop 3</a></li>
+        </ul>
+        <button>View All Workshops</button>
+    </section>
+</main>
+{% endblock %}
+
+{% block java %}
+<script>
+    $(document).ready(function () {
+        $('.slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 800,
+            slidesToShow: 1,
+            adaptiveHeight: true,
+            autoplay: true,
+            autoplaySpeed: 5000,
+            arrows: false,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    });
+</script>
+{% endblock %}
+
+</body>
+
+</html>

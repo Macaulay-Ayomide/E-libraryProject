@@ -1,0 +1,7 @@
+<h1>Approvee</h1>
+<p>{{message}}</p>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" name="approve">Return a book</button>
+</form>

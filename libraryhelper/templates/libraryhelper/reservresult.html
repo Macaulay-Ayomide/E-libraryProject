@@ -1,0 +1,7 @@
+<h1>Approve Reservation</h1>
+<p>{{message}}</p>
+<form method="POST" action="{% url 'searchreservation' %}">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" name="approve">Approve</button>
+</form>

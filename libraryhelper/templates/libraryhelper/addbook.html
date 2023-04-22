@@ -1,0 +1,7 @@
+<h1>ADD A BOOK</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="hidden" name="pdf_available" value="False">
+    <button type="submit" name="approve">Request for approval</button>
+</form>

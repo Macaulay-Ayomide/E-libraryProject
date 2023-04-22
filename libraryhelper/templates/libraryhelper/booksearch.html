@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>booksearchpage</title>
+</head>
+
+<body>
+    <p> {{message}}</p>
+    <form action="{% url 'searchresult' %}">
+        <p>
+        <p>Book Search</p>
+        <ol>
+            <li><input type="radio" name="searchby" value="Author's Name">Author's Name</li>
+            <li><input type="radio" name="searchby" value="Book Title">Book's Title</li>
+            <li><input type="radio" name="searchby" value="None" checked>None</li>
+        </ol>
+        <P>
+            <label for="bookname">Name:
+                <input type="text" name="bookname" id="bookname"></label>
+        </P>
+        </p>
+        <p>Filters</p>
+        <p>
+        <p>Department</p>
+        <ol>
+            <li><input type="radio" name="department" value="None">None</li>
+            <li><input type="radio" name="department" value="AGE">Agriculture Engineering</li>
+            <li><input type="radio" name="department" value="CVE">Civil Engineering</li>
+            <li><input type="radio" name="department" value="CPE">Computer Engineering</li>
+            <li><input type="radio" name="department" value="EEE">Electrical Electronics Engineering</li>
+            <li><input type="radio" name="department" value="IPE">Industrial and Production Engineering</li>
+            <li><input type="radio" name="department" value="ICT">Information and Communication Technology</li>
+            <li><input type="radio" name="department" value="MEE">Mechanical Engineering</li>
+            <li><input type="radio" name="department" value="MME">Materials and Metallurgical Engineering</li>
+            <li><input type="radio" name="department" value="MNE">Mining Engineering</li>
+        </ol>
+        <p>Book Type</p>
+        <ol>
+            <li><input type="radio" name="booktype" value="book">Book</li>
+            <li><input type="radio" name="booktype" value="journal">Journal</li>
+            <li><input type="radio" name="booktype" value="None" checked>None</li>
+        </ol>
+        <P>
+        </p>
+
+        <p><input type="submit" value="Submit"> <input type="reset" value="Reset"></p>
+    </form>
+</body>
+
+</html>

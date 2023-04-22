@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>serachresult</title>
+</head>
+
+<body>
+    <p>BOOKS</p>
+    {% if booklist.count < 1 %} <p>Book is not available</p> {% endif %}
+        {% if booklist %}
+        {% for book in booklist %}
+        <a href="{% url 'bookdetail' book.id %}">
+            <ul>
+                <li>{{book.booktitle}}</li>
+                <li>{{book.authors}}</li>
+                <li>{{book.booktype}}</li>
+                <li>{{book.pdf_available}}</li>
+            </ul>
+        </a>
+        {% endfor %}
+        {%endif%}
+
+
+</body>
+
+</html>

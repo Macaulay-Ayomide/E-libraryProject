@@ -1,0 +1,16 @@
+<h1>Liberian List</h1>
+<h2>{{alllib.count}}
+</h2>
+{% if alllib.count < 1 %} <p>No Liberian Registered yet</p> {% endif %}
+    {% if alllib %}
+    {% for book in alllib %}
+    <a href="{% url 'liberianinfo' book.id %}">
+        <ul>
+            <li>{{book.gende}}</li>
+            <li>{{book.address}}</li>
+            <li>{{book.dob}}</li>
+            <li>{{book.user.last_login}}</li>
+        </ul>
+    </a>
+    {% endfor %}
+    {%endif%}

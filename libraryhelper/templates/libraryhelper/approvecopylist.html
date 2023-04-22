@@ -1,0 +1,12 @@
+<p>BOOKS</p>
+{% if unapplist.count < 1 %} <p>Book is not available</p> {% endif %}
+    {% if unapplist %}
+    {% for book in unapplist %}
+    <a href="{% url 'approvecopy' book.id %}">
+        <ul>
+            <li>{{book.book}}</li>
+            <li>{{book.copyname}}</li>
+        </ul>
+    </a>
+    {% endfor %}
+    {%endif%}

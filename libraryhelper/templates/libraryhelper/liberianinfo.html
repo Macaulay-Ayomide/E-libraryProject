@@ -1,0 +1,17 @@
+<h3>{{user.first_name}}</h3>
+{{error}}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enable changes</button>
+</form>
+
+<form method="POST" action="{% url 'makeadmin' %}">
+    {% csrf_token %}
+    <button type="submit">Make an Admin</button>
+</form>
+
+<form method="POST" action="{% url 'deleteliberian'%}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>

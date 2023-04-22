@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>e-Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/home.css' %}">
+    {% block customcss %}
+    {% endblock %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>e-Library</h1>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="{% url 'bookcatalouge' 'A' 'None'  %}">Books</a></li>
+                <li><a href="#">Journals</a></li>
+                <li><a href="#">Research Papers</a></li>
+                <li><a href="#">Workshops</a></li>
+                <li class="search-icon"><a href="{% url 'booksearch'%}"><button><img src="search-icon.svg"
+                                alt="Search"></button></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div id="maincontent">
+        {% block slider %}{% endblock %}
+    </div>
+    <footer>
+        <p>&copy; 2023 e-Library. All rights reserved.</p>
+    </footer>
+    {% block java %}{% endblock %}

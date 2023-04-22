@@ -1,0 +1,101 @@
+{% extends "libraryhelper/bookdetail.html" %}
+
+{% load static %}
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/bookreserve.css' %}">
+{% endblock %}
+{% block slider %}
+<div class="alert">
+    <h2>Reserve a Book</h2>
+</div>
+
+<section>
+    {% if copy.count < 1 %} <h2>There is no copy avaialable</h2>
+        {% endif %}
+        {% if copy.count > 1 %}
+        <form method="POST">
+            {% csrf_token %}
+            <P>
+                <label for="Firstname">First Name<br>
+                    <input type="text" name="Firstname" id="Firstname"></label>
+            </P>
+            <P>
+                <label for="Surname">Last Name<br>
+                    <input type="text" name="Surname" id="Surname"></label>
+            </P>
+            <P>
+                <label for="Matric">Matric. No.<br>
+                    <input type="text" name="Matric" id="Matric"></label>
+            </P>
+            <p>Department<br>
+                <select name="Department">
+                    <option value='AEC'>AGRIC EXTENSION &amp; COMMUNICATION TECHNOLOGY</option>
+                    <option value='AGE'>AGRICULTURAL ENGINEERING</option>
+                    <option value='ARE'>AGRICULTURE RESOURCE ECONOMICS</option>
+                    <option value='APH'>ANIMAL PRODUCTION &amp; HEALTH SERVICES</option>
+                    <option value='AGY'>APPLIED GEOLOGY</option>
+                    <option value='AGP'>APPLIED GEOPHYSICS</option>
+                    <option value='ARC'>ARCHITECTURE</option>
+                    <option value='BCH'>BIOCHEMISTRY</option>
+                    <option value='BIO'>BIOLOGY</option>
+                    <option value='BMT'>BIOMEDICAL TECHNOLOGY</option>
+                    <option value='BTH'>BIOTECHNOLOGY</option>
+                    <option value='BLD'>BUILDING</option>
+                    <option value='CVE'>CIVIL ENGINEERING</option>
+                    <option value='CPE'> COMPUTER ENGINEERING</option>
+                    <option value='CSC'>COMPUTER SCIENCE</option>
+                    <option value='CSP'>CROP SOIL &amp; PEST MANAGEMENT</option>
+                    <option value='CYS'>CYBER SECURITY</option>
+                    <option value='ECM'>ECOTOURISM &amp; WILDLIFE MANAGEMENT</option>
+                    <option value='EEE'>ELECTRICAL /ELECTRONICS ENGINEERING</option>
+                    <option value='ESM'>ESTATE MANAGEMENT</option>
+                    <option value='FAT'>FISHERIES &amp; AQUACULTURE</option>
+                    <option value='FST'>FOOD SCIENCE &amp; TECHNOLOGY</option>
+                    <option value='FWT'>FORESTRY &amp; WOOD TECHNOLOGY</option>
+                    <option value='HUA'>HUMAN ANATOMY</option>
+                    <option value='IPE'>INDUSTRIAL &amp; PRODUCTION ENGINEERING</option>
+                    <option value='CHE'>INDUSTRIAL CHEMISTRY</option>
+                    <option value='IDD'>INDUSTRIAL DESIGN</option>
+                    <option value='IMT'>INDUSTRIAL MATHEMATICS</option>
+                    <option value='ICT'>INFORMATION &amp; COMMUNICATION TECHNOLOGY</option>
+                    <option value='IFS'>INFORMATION SYSTEMS</option>
+                    <option value='IFT'>INFORMATION TECHNOLOGY</option>
+                    <option value='MST'>MARINE SCIENCE &amp; TECHNOLOGY</option>
+                    <option value='MTS'>MATHEMATICS</option>
+                    <option value='MEE'>MECHANICAL ENGINEERING</option>
+                    <option value='MME'> METALLURGICAL &amp; MATERIALS ENGINEERING</option>
+                    <option value='MTL' %>METEOROLOGY</option>
+                    <option value='MCB' %>MICROBIOLOGY</option>
+                    <option value='MNE' %>MINING ENGINEERING</option>
+                    <option value='PHY' %>PHYSICS</option>
+                    <option value='PSY' %>PHYSIOLOGY</option>
+                    <option value='QSV' %>QUANTITY SURVEYING</option>
+                    <option value='RSG' %>REMOTE SENSING & GEOSCIENCES INFORMATION SYSTEM</option>
+                    <option value='SFE' %>SOFTWARE ENGINEERING</option>
+                    <option value='STA' %>STATISTICS</option>
+                    <option value='SVG' %>SURVEYING & GEOINFORMATICS</option>
+                    <option value='URP' %>URBAN & REGIONAL PLAN</option>
+                </select>
+            </p>
+            <p>School<br>
+                <select name="School">
+                    <option value="SEET">SEET</option>
+                    <option value="SET">SET</option>
+                    <option value="SMAT">SMAT</option>
+                    <option value="SHHT">SHHT</option>
+                    <option value="SOC">SOC</option>
+                    <option value="SPS">SPS</option>
+                    <option value="SAAT">SAAT</option>
+                    <option value="SLS">SLS</option>
+                    <option value="SEMS">SEMS</option>
+                </select>
+            </p>
+</section>
+<div class="bottondiv">
+    <button class="bottom" type="submit">Reserve</button>
+    <button class="bottom" type="reset">Reset</button>
+</div>
+</form>
+{% endif %}
+
+{% endblock %}

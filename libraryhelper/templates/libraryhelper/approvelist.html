@@ -1,0 +1,15 @@
+<h1>Approve List</h1>
+{% if approvelist.count < 1 %} <p>No reservation has been made for this book yet</p> {% endif %}
+    {% if approvelist %}
+    {% for book in approvelist %}
+    <a href="{% url 'approvestudent' book.id %}">
+        <ul>
+            <li>{{book.firstname}}</li>
+            <li>{{book.surname}}</li>
+            <li>{{book.matric}}</li>
+            <li>{{book.department}}</li>
+            <li>{{book.school}}</li>
+        </ul>
+    </a>
+    {% endfor %}
+    {%endif%}
