@@ -1,0 +1,108 @@
+{% extends "libraryhelper/base.html" %}
+
+{% load static %}
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/catalouge.css' %}">
+{% endblock %}
+{% block slider %}
+<div id="alphabet-menu">
+    <ul>
+        <li><a href="{% url 'allcatalouge' 'A' vartwo %}">A</a></li>
+        <li><a href="{% url 'allcatalouge' 'B' vartwo %}">B</a></li>
+        <li><a href="{% url 'allcatalouge' 'C' vartwo %}">C</a></li>
+        <li><a href="{% url 'allcatalouge' 'D' vartwo %}">D</a></li>
+        <li><a href="{% url 'allcatalouge' 'E' vartwo %}">E</a></li>
+        <li><a href="{% url 'allcatalouge' 'F' vartwo %}">F</a></li>
+        <li><a href="{% url 'allcatalouge' 'G' vartwo %}">G</a></li>
+        <li><a href="{% url 'allcatalouge' 'H' vartwo %}">H</a></li>
+        <li><a href="{% url 'allcatalouge' 'I' vartwo %}">I</a></li>
+        <li><a href="{% url 'allcatalouge' 'J' vartwo %}">J</a></li>
+        <li><a href="{% url 'allcatalouge' 'K' vartwo %}">K</a></li>
+        <li><a href="{% url 'allcatalouge' 'L' vartwo %}">L</a></li>
+        <li><a href="{% url 'allcatalouge' 'M' vartwo %}">M</a></li>
+        <li><a href="{% url 'allcatalouge' 'N' vartwo %}">N</a></li>
+        <li><a href="{% url 'allcatalouge' '0' vartwo %}">O</a></li>
+        <li><a href="{% url 'allcatalouge' 'P' vartwo %}">P</a></li>
+        <li><a href="{% url 'allcatalouge' 'Q' vartwo %}">Q</a></li>
+        <li><a href="{% url 'allcatalouge' 'R' vartwo %}">R</a></li>
+        <li><a href="{% url 'allcatalouge' 'S' vartwo %}">S</a></li>
+        <li><a href="{% url 'allcatalouge' 'T' vartwo %}">T</a></li>
+        <li><a href="{% url 'allcatalouge' 'U' vartwo %}">U</a></li>
+        <li><a href="{% url 'allcatalouge' 'V' vartwo %}">V</a></li>
+        <li><a href="{% url 'allcatalouge' 'W' vartwo %}">W</a></li>
+        <li><a href="{% url 'allcatalouge' 'X' vartwo %}">X</a></li>
+        <li><a href="{% url 'allcatalouge' 'Y' vartwo %}">Y</a></li>
+        <li><a href="{% url 'bookcatalouge' 'Z' vartwo %}">Z</a></li>
+        <!-- Add more links for other alphabets -->
+    </ul>
+</div>
+<div id="department-sidebar">
+    <h2>DEPARTMENTS</h2>
+    <ul>
+        <li><a href="{% url 'allcatalouge' varone 'None' %}">NONE</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'AEC' %}">AGRIC EXTENSION &amp; COMMUNICATION TECHNOLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'AGE' %}">AGRICULTURAL ENGINEERING</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'ARE' %}">AGRICULTURE RESOURCE ECONOMICS</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'APH' %}">ANIMAL PRODUCTION &amp; HEALTH SERVICES</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'AGY' %}">APPLIED GEOLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'AGP' %}">APPLIED GEOPHYSICS</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'ARC' %}">ARCHITECTURE</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'BCH' %}">BIOCHEMISTRY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'BIO' %}">BIOLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'BMT' %}">BIOMEDICAL TECHNOLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'BTH' %}">BIOTECHNOLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'BLD' %}">BUILDING</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'CVE' %}">CIVIL ENGINEERING</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'CPE' %}">COMPUTER ENGINEERING</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'CSC' %}">COMPUTER SCIENCE</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'CSP' %}">CROP SOIL &amp; PEST MANAGEMENT</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'CYS' %}">CYBER SECURITY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'ECM' %}">ECOTOURISM &amp; WILDLIFE MANAGEMENT</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'EEE' %}">ELECTRICAL /ELECTRONICS ENGINEERING</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'ESM' %}">ESTATE MANAGEMENT</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'FAT' %}">FISHERIES &amp; AQUACULTURE</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'FST' %}">FOOD SCIENCE &amp; TECHNOLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'FWT' %}">FORESTRY &amp; WOOD TECHNOLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'HUA' %}">HUMAN ANATOMY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'IPE' %}">INDUSTRIAL &amp; PRODUCTION ENGINEERING</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'CHE' %}">INDUSTRIAL CHEMISTRY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'IDD' %}">INDUSTRIAL DESIGN</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'IMT' %}">INDUSTRIAL MATHEMATICS</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'ICT' %}">INFORMATION &amp; COMMUNICATION TECHNOLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'IFS' %}">INFORMATION SYSTEMS</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'IFT' %}">INFORMATION TECHNOLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'MST' %}">MARINE SCIENCE &amp; TECHNOLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'MTS' %}">MATHEMATICS</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'MEE' %}">MECHANICAL ENGINEERING</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'MME' %}">METALLURGICAL &amp; MATERIALS ENGINEERING</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'MTL' %}">METEOROLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'MCB' %}">MICROBIOLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'MNE' %}">MINING ENGINEERING</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'PHY' %}">PHYSICS</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'PSY' %}">PHYSIOLOGY</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'QSV' %}">QUANTITY SURVEYING</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'RSG' %}">REMOTE SENSING & GEOSCIENCES INFORMATION SYSTEM</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'SFE' %}">SOFTWARE ENGINEERING</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'STA' %}">STATISTICS</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'SVG' %}">SURVEYING & GEOINFORMATICS</a></li>
+        <li><a href="{% url 'allcatalouge' varone 'URP' %}">URBAN & REGIONAL PLAN</a></li>
+    </ul>
+</div>
+</div>
+
+<section>
+    <div class="top">
+        <li>Title</li>
+        <li>Authors</li>
+        <li>Year</li>
+        <li>Print Type</li>
+    </div>
+    <div class="bodi">
+        {% for item in items %}
+        <li><a href="{% url 'bookdetail' item.id %}">{{ item.booktitle|striptags|truncatechars:28}}</a></li>
+        <li><a href="{% url 'bookdetail' item.id %}">{{item.authors|striptags|truncatechars:25}}</a></li>
+        <li><a href="{% url 'bookdetail' item.id %}">{{item.year}}</a></li>
+        <li><a href="{% url 'bookdetail' item.id %}">{{item.booktype}}</a></li>
+        {% endfor %}
+</section>
+{% endblock %}

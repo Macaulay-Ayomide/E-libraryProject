@@ -1,0 +1,108 @@
+{% extends "libraryhelper/base.html" %}
+
+{% load static %}
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/catalog.css' %}">
+{% endblock %}
+{% block slider %}
+<div id="alphabet-menu">
+    <ul>
+        <li><a href="{% url 'journalcatalouge' 'A' vartwo %}">A</a></li>
+        <li><a href="{% url 'journalcatalouge' 'B' vartwo %}">B</a></li>
+        <li><a href="{% url 'journalcatalouge' 'C' vartwo %}">C</a></li>
+        <li><a href="{% url 'journalcatalouge' 'D' vartwo %}">D</a></li>
+        <li><a href="{% url 'journalcatalouge' 'E' vartwo %}">E</a></li>
+        <li><a href="{% url 'journalcatalouge' 'F' vartwo %}">F</a></li>
+        <li><a href="{% url 'journalcatalouge' 'G' vartwo %}">G</a></li>
+        <li><a href="{% url 'journalcatalouge' 'H' vartwo %}">H</a></li>
+        <li><a href="{% url 'journalcatalouge' 'I' vartwo %}">I</a></li>
+        <li><a href="{% url 'journalcatalouge' 'J' vartwo %}">J</a></li>
+        <li><a href="{% url 'journalcatalouge' 'K' vartwo %}">K</a></li>
+        <li><a href="{% url 'journalcatalouge' 'L' vartwo %}">L</a></li>
+        <li><a href="{% url 'journalcatalouge' 'M' vartwo %}">M</a></li>
+        <li><a href="{% url 'journalcatalouge' 'N' vartwo %}">N</a></li>
+        <li><a href="{% url 'journalcatalouge' '0' vartwo %}">O</a></li>
+        <li><a href="{% url 'journalcatalouge' 'P' vartwo %}">P</a></li>
+        <li><a href="{% url 'journalcatalouge' 'Q' vartwo %}">Q</a></li>
+        <li><a href="{% url 'journalcatalouge' 'R' vartwo %}">R</a></li>
+        <li><a href="{% url 'journalcatalouge' 'S' vartwo %}">S</a></li>
+        <li><a href="{% url 'journalcatalouge' 'T' vartwo %}">T</a></li>
+        <li><a href="{% url 'journalcatalouge' 'U' vartwo %}">U</a></li>
+        <li><a href="{% url 'journalcatalouge' 'V' vartwo %}">V</a></li>
+        <li><a href="{% url 'journalcatalouge' 'W' vartwo %}">W</a></li>
+        <li><a href="{% url 'journalcatalouge' 'X' vartwo %}">X</a></li>
+        <li><a href="{% url 'journalcatalouge' 'Y' vartwo %}">Y</a></li>
+        <li><a href="{% url 'journalcatalouge' 'Z' vartwo %}">Z</a></li>
+        <!-- Add more links for other alphabets -->
+    </ul>
+</div>
+<div id="department-sidebar">
+    <h2>DEPARTMENTS</h2>
+    <ul>
+        <li><a href="{% url 'journalcatalouge' varone 'None' %}">NONE</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'AEC' %}">AGRIC EXTENSION &amp; COMMUNICATION TECHNOLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'AGE' %}">AGRICULTURAL ENGINEERING</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'ARE' %}">AGRICULTURE RESOURCE ECONOMICS</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'APH' %}">ANIMAL PRODUCTION &amp; HEALTH SERVICES</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'AGY' %}">APPLIED GEOLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'AGP' %}">APPLIED GEOPHYSICS</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'ARC' %}">ARCHITECTURE</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'BCH' %}">BIOCHEMISTRY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'BIO' %}">BIOLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'BMT' %}">BIOMEDICAL TECHNOLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'BTH' %}">BIOTECHNOLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'BLD' %}">BUILDING</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'CVE' %}">CIVIL ENGINEERING</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'CPE' %}">COMPUTER ENGINEERING</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'CSC' %}">COMPUTER SCIENCE</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'CSP' %}">CROP SOIL &amp; PEST MANAGEMENT</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'CYS' %}">CYBER SECURITY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'ECM' %}">ECOTOURISM &amp; WILDLIFE MANAGEMENT</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'EEE' %}">ELECTRICAL /ELECTRONICS ENGINEERING</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'ESM' %}">ESTATE MANAGEMENT</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'FAT' %}">FISHERIES &amp; AQUACULTURE</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'FST' %}">FOOD SCIENCE &amp; TECHNOLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'FWT' %}">FORESTRY &amp; WOOD TECHNOLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'HUA' %}">HUMAN ANATOMY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'IPE' %}">INDUSTRIAL &amp; PRODUCTION ENGINEERING</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'CHE' %}">INDUSTRIAL CHEMISTRY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'IDD' %}">INDUSTRIAL DESIGN</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'IMT' %}">INDUSTRIAL MATHEMATICS</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'ICT' %}">INFORMATION &amp; COMMUNICATION TECHNOLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'IFS' %}">INFORMATION SYSTEMS</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'IFT' %}">INFORMATION TECHNOLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'MST' %}">MARINE SCIENCE &amp; TECHNOLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'MTS' %}">MATHEMATICS</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'MEE' %}">MECHANICAL ENGINEERING</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'MME' %}">METALLURGICAL &amp; MATERIALS ENGINEERING</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'MTL' %}">METEOROLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'MCB' %}">MICROBIOLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'MNE' %}">MINING ENGINEERING</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'PHY' %}">PHYSICS</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'PSY' %}">PHYSIOLOGY</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'QSV' %}">QUANTITY SURVEYING</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'RSG' %}">REMOTE SENSING & GEOSCIENCES INFORMATION SYSTEM</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'SFE' %}">SOFTWARE ENGINEERING</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'STA' %}">STATISTICS</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'SVG' %}">SURVEYING & GEOINFORMATICS</a></li>
+        <li><a href="{% url 'journalcatalouge' varone 'URP' %}">URBAN & REGIONAL PLAN</a></li>
+    </ul>
+</div>
+</div>
+
+<section>
+    <div class="top">
+        <li>Title</li>
+        <li>Authors</li>
+        <li>Year</li>
+        <li>Print Type</li>
+    </div>
+    <div class="bodi">
+        {% for item in items %}
+        <li><a href="{% url 'bookdetail' item.id %}">{{ item.booktitle|striptags|truncatechars:28}}</a></li>
+        <li><a href="{% url 'bookdetail' item.id %}">{{item.authors|striptags|truncatechars:25}}</a></li>
+        <li><a href="{% url 'bookdetail' item.id %}">{{item.year}}</a></li>
+        <li><a href="{% url 'bookdetail' item.id %}">{{item.booktype}}</a></li>
+        {% endfor %}
+</section>
+{% endblock %}

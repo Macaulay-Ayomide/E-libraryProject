@@ -1,33 +1,71 @@
-<h1>Defaulter's List</h1>
-{% if overduelist.count < 1 %} <p>No student defaulted on due date</p> {% endif %}
-    {% if overduelist %}
-    {% for book in overduelist %}
-    <a href="{% url 'viewdefaulters' book.id %}">
-        <ul>
-            <li>{{book.firstname}}</li>
-            <li>{{book.surname}}</li>
-            <li>{{book.matric}}</li>
-            <li>{{book.department}}</li>
-            <li>{{book.school}}</li>
-        </ul>
-    </a>
-    {% endfor %}
-    {%endif%}
+{% extends "libraryhelper/bookdetail.html" %}
 
-    <form action="{% url 'searchdefault' %}">
-        <p>
-        <p>Defaulter Search</p>
-        <ol>
-            <li><input type="radio" name="searchby" value="Firstname">Firstname</li>
-            <li><input type="radio" name="searchby" value="Surname">Surname</li>
-            <li><input type="radio" name="searchby" value="Department" checked>Department</li>
-            <li><input type="radio" name="searchby" value="School" checked>School</li>
-            <li><input type="radio" name="searchby" value="matric" checked>Matric</li>
-        </ol>
-        <P>
-            <label for="searchname">Name:
-                <input type="text" name="searchname" id="searchname"></label>
-        </P>
-        </p>
-        <p><input type="submit" value="Submit"> <input type="reset" value="Reset"></p>
-    </form>
+{% load static %}
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'fontawesome-free-5.15.4-web/css/all.css' %}">
+{% endblock %}
+{% block slider %}
+<h2>{{message}}</h2>
+<nav class="home">
+    <ul class="homeul">
+        <li class="homeli"><a href="{% url 'home' %}">HOMEPAGE</a></li>
+        <li class="homeli"><a href="{% url 'approve' %}">APPROVED</a></li>
+        <li class="homeli"><a href="{% url 'overdue' %}">OVERDUE'S</a></li>
+        <li class="homeli"><a href="{% url 'defaulters' %}">DEFAULTERS</a></li>
+        <li class="homeli"><a href="{% url 'addbook' %}">ADD BOOK</a></li>
+        <li class="homeli"><a href="{% url 'addcopy' %}">ADD COPY</a></li>
+        {% if admin.isAdmin %}
+        <li class="homeli"><a href="{% url 'approvecopylist' %}">UNAPPV COPY</a></li>
+        <li class="homeli"><a href="{% url 'approvebooklist' %}">UNAPPV BOOK</a></li>
+        <li class="homeli"><a href="{% url 'liberianlist' %}">LIBERIANS</a></li>
+        <li class="homeli"><a href="{% url 'addliberian' %}">ADD LIBERIAN</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<div class="alert">
+    <h2>Defaulter's List</h2>
+</div>
+<section>{% if overduelist.count < 1 %} <p>No student defaulted on due date</p> {% endif %}
+        {% if overduelist %}
+        <div class="top">
+            <li>First name</li>
+            <li>Surname</li>
+            <li>Matric No.</li>
+            <li>Department</li>
+            <li>School</li>
+            <li>Time Elapsed</li>
+        </div>
+        <div class="bodi">
+            {% for book in overduelist %}
+            <li><a href="{% url 'viewdefaulters' book.id %}">{{book.firstname}}</a></li>
+            <li><a href="{% url 'viewdefaulters' book.id %}">{{book.surname}}</a></li>
+            <li><a href="{% url 'viewdefaulters' book.id %}">{{book.matric}}</a></li>
+            <li><a href="{% url 'viewdefaulters' book.id %}">{{book.department}}</a></li>
+            <li><a href="{% url 'viewdefaulters' book.id %}">{{book.school}}</a></li>
+            <li><a href="{% url 'viewdefaulters' book.id %}">{{book.prior}} days</a></li>
+            {% endfor %}
+        </div>
+        {% endif %}
+</section>
+
+
+<form action="{% url 'searchdefault' %}" method="POST">
+    {% csrf_token %}
+    <p>
+    <p>Defaulter Search</p>
+    <ol>
+        <li><input type="radio" name="searchby" value="Firstname">Firstname</li>
+        <li><input type="radio" name="searchby" value="Surname">Surname</li>
+        <li><input type="radio" name="searchby" value="Department" checked>Department</li>
+        <li><input type="radio" name="searchby" value="School" checked>School</li>
+        <li><input type="radio" name="searchby" value="matric" checked>Matric</li>
+    </ol>
+    <P>
+        <label for="searchname">Name:
+            <input type="text" name="searchname" id="searchname"></label>
+    </P>
+    </p>
+    <p><input type="submit" value="Submit"> <input type="reset" value="Reset"></p>
+</form>
+{% endblock %}

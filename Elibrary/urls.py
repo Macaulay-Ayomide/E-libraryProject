@@ -31,16 +31,21 @@ urlpatterns = [
     path('bookreservation/<int:book_pk>', views.bookreserve,name="bookreserve"),
     path('bookreservelist/<int:book_pk>', views.bookreservelist,name="bookreservelist"),
     path('bookcatalouge/<str:varone>/<str:vartwo>',views.bookcatalouge,name="bookcatalouge"),
+    path('journalcatalouge/<str:varone>/<str:vartwo>',views.journalcatalouge,name="journalcatalouge"),
+    path('papercatalouge/<str:varone>/<str:vartwo>',views.papercatalouge,name="papercatalouge"),
+    path('allcatalouge/<str:varone>/<str:vartwo>',views.allcatalouge,name="allcatalouge"),
 
 
     ##liberian URLS
-    path('login/', views.login, name="login"),
+    path('login/', views.loginuser, name="login"),
+    path('logout/', views.logoutuser, name="logout"),
     path('homepage/', views.home, name="home"),
     path('searchreservation/', views.searchreservation, name="searchreservation"),
     path('approve/', views.approve, name="approve"),
     path('approve/<int:approve_pk>', views.approvestudent, name="approvestudent"),
     path('approvereserve/<int:reserve_pk>', views.approvereserve, name="approvereserve"),
     path('overdue/', views.overdue, name="overdue"),
+    path('searchapprove/', views.searchapprove, name="searchapprove"),
     path('searchoverdue/', views.searchoverdue, name="searchoverdue"),
     path('searchdefault/', views.searchdefault, name="searchdefault"),
     path('defaulters/', views.defaulters, name="defaulters"),
@@ -57,12 +62,9 @@ urlpatterns = [
     path('addliberian/', views.addliberian, name="addliberian"),
     path('personalinfo/', views.personalinfo, name="personalinfo"),
     path('liberianlist/', views.liberianlist, name="liberianlist"),
-    path('liberianinfo/', views.liberianinfo, name="liberianinfo"),
+    path('liberianinfo/<int:copy_pk>', views.liberianinfo, name="liberianinfo"),
     path('makeadmin/', views.makeadmin, name="makeadmin"),
-    path('deleteliberian/', views.deleteliberian, name="deleteliberian"),
-    
-    
-    
+    path('deleteliberian/', views.deleteliberian, name="deleteliberian"),    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

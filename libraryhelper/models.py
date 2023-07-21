@@ -1,5 +1,5 @@
 from django.db import models
-import datetime
+from datetime import datetime, date, timedelta
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy 
 
@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy
 uuser = get_user_model()
 # Create your models here.
 class Book(models.Model):
-    booktitle = models.CharField(max_length=100,unique=True)
+    booktitle = models.CharField(max_length=100)
     bookimg =  models.ImageField(default='./kraft-notebook-with-elastic-band-2542530__340.jpg',upload_to="elibrary/bookimages")
     authors = models.CharField(blank=True,max_length=200)
     edition = models.CharField(blank=True,max_length=100)
@@ -21,7 +21,7 @@ class Book(models.Model):
     dateadded = models.DateTimeField(auto_now_add=True)
     pdf_available = models.BooleanField(default=True,null=False)
     pdf_file = models.FileField(blank=True, upload_to='elibrary/pdfs/')
-    popular = models.IntegerField()
+    popular = models.IntegerField(blank=True,null=True)
 
     
     def __str__(self):
@@ -41,7 +41,7 @@ class Copy(models.Model):
 class Reservee(models.Model):
         book = models.ForeignKey(Book, on_delete=models.CASCADE)
         surname = models.CharField(max_length=100)
-        matric = models.CharField(max_length=100,unique=True)
+        matric = models.CharField(max_length=100)
         firstname = models.CharField(max_length=100)
         department = models.CharField(max_length=100)
         school = models.CharField(max_length=100)
@@ -61,7 +61,9 @@ class Loan(models.Model):
         school = models.CharField(max_length=100)
         dateloaned = models.DateTimeField(auto_now_add=True)
         returndate = models.DateTimeField(blank=True,null=True)
-
+        expectedreturndate = models.DateTimeField(datetime.now()+timedelta(days=7))
+        overlappeddate = models.IntegerField(blank=True)
+        
 
         def __str__(self):
             return f"{self.matric},{self.copy}"
@@ -87,8 +89,7 @@ class Defaulters(models.Model):
     department = models.CharField(max_length=100)
     school = models.CharField(max_length=100)
     datereated = models.DateTimeField(auto_now_add=True)
-
-
+    
 class Liberian(models.Model):
     class Gender(models.TextChoices):
         Male = 'M', ('Male')
@@ -106,4 +107,5 @@ class Liberian(models.Model):
     nin = models.CharField(max_length=200,blank=True)
     isAdmin = models.BooleanField(default=False)
     profileimg =  models.ImageField(default='./blank-profile-picture-circle-hd.png',upload_to="libraryhelper/images")
-    
+    last_log = models.DateTimeField(blank=True,null=True)
+    dateadded = models.DateTimeField(auto_now_add=True)

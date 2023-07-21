@@ -1,4 +1,31 @@
-<h1>ADD A LIBERIAN</h1>
+{% extends "libraryhelper/home.html" %}
+
+{% load static %}
+{% block customcss %}<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/homepage.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/approvecopy.css' %}">
+{% endblock %}
+{% block slider %}
+<nav class="home">
+    <ul class="homeul">
+        <div>
+            <li class="homeli"><a href="{% url 'home' %}">HOMEPAGE</a></li>
+            <li class="homeli"><a href="{% url 'approve' %}">APPROVED</a></li>
+            <li class="homeli"><a href="{% url 'overdue' %}">OVERDUE'S</a></li>
+            <li class="homeli"><a href="{% url 'defaulters' %}">DEFAULTERS</a></li>
+            <li class="homeli"><a href="{% url 'addbook' %}">ADD BOOK</a></li>
+            <li class="homeli"><a href="{% url 'addcopy' %}">ADD COPY</a></li>
+            <li class="homeli"><a href="{% url 'approvecopylist' %}">UNAPPV COPY</a></li>
+            <li class="homeli"><a href="{% url 'approvebooklist' %}">UNAPPV BOOK</a></li>
+            <li class="homeli"><a href="{% url 'liberianlist' %}">LIBERIANS</a></li>
+            <li class="homeli"><a href="{% url 'addliberian' %}">ADD LIBERIAN</a></li>
+        </div>
+    </ul>
+</nav>
+<div class="alert">
+    <h2>ADD A LIBERIAN</h2>
+    <p>{{message}}</p>
+</div>
 <form method="POST">
     {% csrf_token %}
     <P>
@@ -28,3 +55,4 @@
     </p>
     <p><input type="submit" value="Submit"> <input type="reset" value="Reset"></p>
 </form>
+{% endblock %}

@@ -1,27 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "libraryhelper/base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>reservelist</title>
-</head>
-
-<body>
-    <h1>Reservation List</h1>
+{% load custom_filters %}
+{% load static %}
+{% block customcss %}
+<link rel="stylesheet" href="{% static 'fontawesome-free-5.15.4-web/css/all.css' %}">
+<link rel="stylesheet" href="{% static 'CSS/reservelist2.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/homepage.css' %}">
+{% endblock %}
+{% block slider %}
+<div class="alert">
+    <h2>Reservation List</h2>
+</div>
+<section>
     {% if reservelist.count < 1 %} <p>No reservation has been made for this book yet</p> {% endif %}
         {% if reservelist %}
-        {% for book in reservelist %}
-        <ul>
+        <div class="top">
+            <p id="mobile">The list is in this order Name, Surname, Matric,
+                Department, Burrower rating<br>
+            </p>
+            <li>First name</li>
+            <li>Surname</li>
+            <li>Matric No.</li>
+            <li>Department</li>
+            <li>School</li>
+            <li>Book rating</li>
+        </div>
+        <div class="bodi">
+            {% for book in reservelist %}
             <li>{{book.firstname}}</li>
             <li>{{book.surname}}</li>
             <li>{{book.matric}}</li>
             <li>{{book.department}}</li>
             <li>{{book.school}}</li>
-        </ul>
-        {% endfor %}
-        {%endif%}
-</body>
-
-</html>
+            <li>
+                {% if book.matric|stars == 0 %}
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                {% elif book.matric|stars == 1 %}
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+                {% elif book.matric|stars == 2 %}
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                {% elif book.matric|stars == 3 %}
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                {% endif %}
+            </li>
+            {% endfor %}
+            {%endif%}
+        </div>
+</section>
+{% endblock %}

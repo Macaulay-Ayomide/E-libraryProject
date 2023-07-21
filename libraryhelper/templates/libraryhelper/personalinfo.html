@@ -1,7 +1,33 @@
-<h1>Liberian Info</h1>
-<p>{{message}}</p>
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit" name="approve">Submit</button>
-</form>
+{% extends "libraryhelper/home.html" %}
+
+{% load static %}
+{% block customcss %}<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/homepage.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/addtwobook.css' %}">
+<link rel="stylesheet" href="{% static 'fontawesome-free-5.15.4-web/css/all.css' %}">
+{% endblock %}
+{% block slider %}
+<<nav class="home">
+    <ul class="homeul">
+        <li class="homeli"><a href="{% url 'home' %}">HOMEPAGE</a></li>
+        <li class="homeli"><a href="{% url 'approve' %}">APPROVED</a></li>
+        <li class="homeli"><a href="{% url 'overdue' %}">OVERDUE'S</a></li>
+        <li class="homeli"><a href="{% url 'defaulters' %}">DEFAULTERS</a></li>
+        <li class="homeli"><a href="{% url 'addbook' %}">ADD BOOK</a></li>
+        <li class="homeli"><a href="{% url 'addcopy' %}">ADD COPY</a></li>
+        <li class="homeli"><a href="{% url 'approvecopylist' %}">UNAPPV COPY</a></li>
+        <li class="homeli"><a href="{% url 'approvebooklist' %}">UNAPPV BOOK</a></li>
+        <li class="homeli"><a href="{% url 'liberianlist' %}">LIBERIANS</a></li>
+        <li class="homeli"><a href="{% url 'addliberian' %}">ADD LIBERIAN</a></li>
+    </ul>
+    </nav>
+    <div class="alert">
+        <h2>Personal Info</h2>
+        <p>{{message}}</p>
+    </div>
+    <form class="book-form" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" name="approve">Submit</button>
+    </form>
+    {% endblock %}

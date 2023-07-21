@@ -1,7 +1,18 @@
-<h1>Log In</h1>
-<h2>{{error}}</h2>
+{% extends "libraryhelper/home.html" %}
+
+{% load static %}
+{% block customcss %}<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/homepage.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/approvecopy.css' %}">
+{% endblock %}
+{% block slider %}
+<div class="alert">
+    <h2>Log In</h2>
+</div>
 <form method="POST">
     {% csrf_token %}
+    <p>{{error}}</p>
     {{form.as_p}}
     <button type="submit">Log In</button>
 </form>
+{% endblock %}

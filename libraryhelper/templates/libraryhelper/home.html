@@ -1,44 +1,97 @@
-<h1>HOME PAGE</h1>
-<a href="{% url 'approve' %}">Approved list</a>
-<a href="{% url 'overdue' %}">Overdue returnee's</a>
-<a href="{% url 'defaulters' %}">Defaulters</a>
-<a href="{% url 'addbook' %}">Add a book</a>
-<a href="{% url 'addcopy' %}">Add a copy</a>
-<a href="{% url 'approvecopylist' %}">Unapprove Copy List</a>
-<a href="{% url 'approvebooklist' %}">Unapprove Book List</a>
-<a href="{% url 'liberianlist' %}">Liberian list</a>
-<a href="{% url 'addliberian' %}">ADD A LIBERIAN</a>
+{% extends "libraryhelper/bookdetail.html" %}
 
+{% load static %}
+{% load custom_filters %}
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'fontawesome-free-5.15.4-web/css/all.css' %}">
+{% endblock %}
+{% block slider %}
 <h2>{{message}}</h2>
-{% if reservelist.count < 1 %} <p>No reservation was made</p> {% endif %}
-    {% if reservelist %}
-    {% for book in reservelist %}
-    <a href="{% url 'approvereserve' book.id %}">
-        <ul>
-            <li>{{book.firstname}}</li>
-            <li>{{book.surname}}</li>
-            <li>{{book.matric}}</li>
-            <li>{{book.department}}</li>
-            <li>{{book.school}}</li>
-        </ul>
-    </a>
-    {% endfor %}
-    {%endif%}
+<nav class="home">
+    <ul class="homeul">
+        <li class="homeli"><a href="{% url 'home' %}">HOMEPAGE</a></li>
+        <li class="homeli"><a href="{% url 'approve' %}">APPROVED</a></li>
+        <li class="homeli"><a href="{% url 'overdue' %}">OVERDUE'S</a></li>
+        <li class="homeli"><a href="{% url 'defaulters' %}">DEFAULTERS</a></li>
+        <li class="homeli"><a href="{% url 'addbook' %}">ADD BOOK</a></li>
+        <li class="homeli"><a href="{% url 'addcopy' %}">ADD COPY</a></li>
+        {% if admin.isAdmin %}
+        <li class="homeli"><a href="{% url 'approvecopylist' %}">UNAPPV COPY</a></li>
+        <li class="homeli"><a href="{% url 'approvebooklist' %}">UNAPPV BOOK</a></li>
+        <li class="homeli"><a href="{% url 'liberianlist' %}">LIBERIANS</a></li>
+        <li class="homeli"><a href="{% url 'addliberian' %}">ADD LIBERIAN</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<div class="alert">
+    <h2>Reservation List</h2>
+</div>
+<section>{% if reservelist.count < 1 %} <p>No reservation has been made for this book yet</p> {% endif %}
+        {% if reservelist %}
+        <div class="top">
+            <li>First name</li>
+            <li>Surname</li>
+            <li>Matric No.</li>
+            <li>Department</li>
+            <li>School</li>
+            <li>Book rating</li>
+        </div>
+        <div class="bodi">
+            {% for book in reservelist %}
+            <li><a href="{% url 'approvereserve' book.id %}">{{book.firstname}}</a></li>
+            <li><a href="{% url 'approvereserve' book.id %}"></a>{{book.surname}}</li>
+            <li><a href="{% url 'approvereserve' book.id %}"></a>{{book.matric}}</li>
+            <li><a href="{% url 'approvereserve' book.id %}"></a>{{book.department}}</li>
+            <li><a href="{% url 'approvereserve' book.id %}"></a>{{book.school}}</li>
+            <li>
+                {% if book.matric|stars == 0 %}
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                {% elif book.matric|stars == 1 %}
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+                {% elif book.matric|stars == 2 %}
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                {% elif book.matric|stars == 3 %}
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                {% endif %}
+            </li>
+            {% endfor %}
+            {%endif%}
+        </div>
+</section>
 
-    <form action="{% url 'searchreservation' %}">
-        <p>
-        <p>Book Search</p>
-        <ol>
-            <li><input type="radio" name="searchby" value="Firstname">Firstname</li>
-            <li><input type="radio" name="searchby" value="Surname">Surname</li>
-            <li><input type="radio" name="searchby" value="Department" checked>Department</li>
-            <li><input type="radio" name="searchby" value="School" checked>School</li>
-            <li><input type="radio" name="searchby" value="matric" checked>Matric</li>
-        </ol>
-        <P>
-            <label for="searchname">Name:
-                <input type="text" name="searchname" id="searchname"></label>
-        </P>
-        </p>
-        <p><input type="submit" value="Submit"> <input type="reset" value="Reset"></p>
-    </form>
+<form action="{% url 'searchreservation' %}" method="POST">
+    {% csrf_token %}
+    <p>
+    <p>Book Search</p>
+    <ol>
+        <li><input type="radio" name="searchby" value="Firstname">Firstname</li>
+        <li><input type="radio" name="searchby" value="Surname">Surname</li>
+        <li><input type="radio" name="searchby" value="Department" checked>Department</li>
+        <li><input type="radio" name="searchby" value="School" checked>School</li>
+        <li><input type="radio" name="searchby" value="matric" checked>Matric</li>
+    </ol>
+    <P>
+        <label for="searchname">Name:
+            <input type="text" name="searchname" id="searchname"></label>
+    </P>
+    </p>
+    <p><input type="submit" value="Submit"> <input type="reset" value="Reset"></p>
+</form>
+{% endblock %}

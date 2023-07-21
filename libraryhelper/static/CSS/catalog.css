@@ -1,0 +1,218 @@
+/* Style for the alphabet menu */
+/* Style for the alphabet menu box */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#maincontent {
+    margin: 0;
+    padding: 0;
+}
+
+
+#alphabet-menu {
+    display: flex;
+    background-color: #CCC;
+    padding: 8px;
+    border-radius: 10px;
+    justify-content: space-around;
+    height: 8vh;
+    width: 100%;
+}
+
+#alphabet-menu a {
+    display: inline-block;
+    font-size: 15px;
+    text-decoration: none;
+    color: #333;
+    background-color: #f8f1ee;
+    border: 2px solid #FF8C00;
+    border-radius: 10px;
+    width: 8px;
+    padding: 5px 20px;
+}
+
+#alphabet-menu a:hover {
+    color: #fff;
+    background-color: #FF8C00;
+}
+
+ul li {
+    list-style: none;
+    display: inline;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    text-decoration-line: none;
+}
+
+a:hover {
+    color: #ff8c00;
+}
+
+
+/* Style for the department sidebar */
+#department-sidebar {
+    float: left;
+    width: 25%;
+    background-color: #FFA500;
+    border-right: 1px solid #ccc;
+}
+
+#department-sidebar h2 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+
+}
+
+#department-sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+#department-sidebar li {
+    display: block;
+    margin-bottom: 10px;
+    border-width: 1px 0;
+    border-style: solid;
+    height: auto;
+    font-size: 12px;
+    border-color: #ccc;
+}
+
+#department-sidebar li a {
+    text-decoration: none;
+    color: #333;
+    text-align: justify-all;
+}
+
+#department-sidebar li a:hover {
+    color: #ff8c00;
+}
+
+/* Style for the book Catalouge*/
+
+
+section {
+    border: 2px solid #CCC;
+    /* lighter green border */
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 20px auto;
+    border-radius: 10px;
+    background-color: #EEE;
+    /* lighter green background */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    justify-content: space around;
+    height: 150vh;
+}
+
+.top,
+.bodi {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    text-align: center;
+    /* lighter green background */
+    border-right: 2px solid #FF8C00;
+    /* darker green border on right side */
+}
+
+.top {
+    height: 8vh;
+    background-color: #EEE;
+    /* darker green border on bottom */
+}
+
+.top li {
+    width: 24.8%;
+    list-style: none;
+    display: inline;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 9px 0;
+    color: white;
+}
+
+.bodi li {
+    background-color: white;
+    list-style: none;
+    width: 24.8%;
+    height: 7vh;
+    margin-bottom: 3px;
+
+}
+
+.top li {
+    background-color: #FF8C00;
+    /* darker green background */
+}
+
+footer {
+    clear: both;
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+
+    /* Alphabet Menu */
+    #alphabet-menu {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding: 10px;
+        height: auto;
+    }
+
+    #alphabet-menu a {
+        width: auto;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    /* Department Sidebar */
+    #department-sidebar {
+        width: 100%;
+        float: none;
+    }
+
+    #department-sidebar h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    /* Book Catalog */
+    section {
+        width: 100%;
+        margin-bottom: 20px;
+        height: auto;
+    }
+
+    .top,
+    .bodi {
+        flex-direction: column;
+        border-right: none;
+    }
+
+    .top li {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .bodi li {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+}

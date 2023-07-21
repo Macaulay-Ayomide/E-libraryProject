@@ -1,6 +1,15 @@
 {% extends "libraryhelper/base.html" %}
 
 {% load static %}
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/index2.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+{% endblock %}
+
 {% block slider %}
 <div class="slider">
     <div class="slider-item">
@@ -50,38 +59,82 @@
     <p>So start exploring our e-Library today and unlock a world of knowledge!</p>
     <button>Explore Now</button>
 </section>
+
 <main>
     <section>
         {% for i in book %}
         <div class="featured-resources">
-            <h3>Featured Resources</h3>
+            <h3>FEATURED RESOURCES</h3>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="featured-resource-item">
-                        <img src="{{ i.bookimg.url }}" alt="Book Cover">
+                    <div class="featured-resource-item" id="featureimagesdiv">
+                        <img id="featureimages" src="{{ i.bookimg.url }}" alt="Book Cover">
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="featured-resource-item">
-                        <h4>{{i.booktitle}}</h4>
-                        <p>{{i.description}}</p>
+                    <div class="featured-resource-item" id="featuretext">
+                        <h4>{{i.booktitle|striptags|truncatechars:50}}</h4>
+                        <p>{{i.description|striptags|truncatechars:350}}</p>
                     </div>
                 </div>
             </div>
         </div>
         {% endfor %}
-        <button>View More</button>
-    </section>
-    <section>
-        <h2>Upcoming Workshops</h2>
-        <ul>
-            <li><a href="#">Title of Workshop 1</a></li>
-            <li><a href="#">Title of Workshop 2</a></li>
-            <li><a href="#">Title of Workshop 3</a></li>
-        </ul>
-        <button>View All Workshops</button>
+        <button href="{% url 'papercatalouge' 'A' 'None'  %}">View More</button>
     </section>
 </main>
+<div class="alert">
+    <h2>Approved List</h2>
+</div>
+<section id="approve" class="list">{% if approvelist.count < 1 %} <p>Book is not available</p> {% endif %}
+        {% if approvelist %}
+        <div class="top">
+            <li>First name</li>
+            <li>Surname</li>
+            <li>Matric No.</li>
+            <li>Department</li>
+            <li>School</li>
+            <li>Due Day</li>
+        </div>
+        <div class="bodi">
+            {% for book in approvelist %}
+            <li>{{book.firstname}}</li>
+            <li>{{book.surname}}</li>
+            <li>{{book.matric}}</li>
+            <li>{{book.department}}</li>
+            <li>{{book.school}}</li>
+            <li>{{book.expectedreturndate|date:'M d, Y'}}</li>
+            {% endfor %}
+        </div>
+        {% endif%}
+</section>
+<div class="alerton">
+    <h2>Overdue List</h2>
+</div>
+<section id="overdue" class="list">{% if overduelist.count < 1 %} <p>No student defaulted on due date</p> {% endif%}
+        {% if overduelist %}
+        <div class="top overdue">
+            <li>First name</li>
+            <li>Surname</li>
+            <li>Matric No.</li>
+            <li>Department</li>
+            <li>School</li>
+            <li>Time Elapsed</li>
+        </div>
+        <div class="bodi overdue">
+            {% for book in overduelist %}
+            <li>{{book.firstname}}</li>
+            <li>{{book.surname}}</li>
+            <li>{{book.matric}}</li>
+            <li>{{book.department}}</li>
+            <li>{{book.school}}</li>
+            {% if book.overlappeddate < 0%} <li>Not yet</li>
+                {% else %}<li>{{ book.overlappeddate }}</li>
+                {% endif %}
+                {% endfor %}
+        </div>
+        {% endif%}
+</section>
 {% endblock %}
 
 {% block java %}
@@ -120,7 +173,3 @@
     });
 </script>
 {% endblock %}
-
-</body>
-
-</html>

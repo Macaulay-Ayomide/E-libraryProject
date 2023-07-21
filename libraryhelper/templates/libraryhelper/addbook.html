@@ -1,7 +1,41 @@
-<h1>ADD A BOOK</h1>
-<form method="POST">
+{% extends "libraryhelper/home.html" %}
+
+{% load static %}
+{% block customcss %}<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/homepage.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/addtwobook.css' %}">
+<link rel="stylesheet" href="{% static 'fontawesome-free-5.15.4-web/css/all.css' %}">
+{% endblock %}
+{% block slider %}
+<h2>{{message}}</h2>
+<nav class="home">
+    <ul class="homeul">
+        <li class="homeli"><a href="{% url 'home' %}">HOMEPAGE</a></li>
+        <li class="homeli"><a href="{% url 'approve' %}">APPROVED</a></li>
+        <li class="homeli"><a href="{% url 'overdue' %}">OVERDUE'S</a></li>
+        <li class="homeli"><a href="{% url 'defaulters' %}">DEFAULTERS</a></li>
+        <li class="homeli"><a href="{% url 'addbook' %}">ADD BOOK</a></li>
+        <li class="homeli"><a href="{% url 'addcopy' %}">ADD COPY</a></li>
+        {% if admin.isAdmin %}
+        <li class="homeli"><a href="{% url 'approvecopylist' %}">UNAPPV COPY</a></li>
+        <li class="homeli"><a href="{% url 'approvebooklist' %}">UNAPPV BOOK</a></li>
+        <li class="homeli"><a href="{% url 'liberianlist' %}">LIBERIANS</a></li>
+        <li class="homeli"><a href="{% url 'addliberian' %}">ADD LIBERIAN</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<div class="alert">
+    <h2>Add Book</h2>
+</div>
+<form class="book-form" method="POST">
     {% csrf_token %}
     {{form.as_p}}
-    <input type="hidden" name="pdf_available" value="False">
+    <input name="bookimg" type="file" id="bookcover">
+    <label for="bookcover">Book Cover<i class="far fa-image"></i></label>
+    <br>
+    <input name="pdf_file" type="file" id="pdf">
+    <label for="pdf">PDF<i class="fas fa-file-pdf"></i></i></label>
+    <br>
     <button type="submit" name="approve">Request for approval</button>
 </form>
+{% endblock %}

@@ -1,6 +1,6 @@
 from resource import RLIM_INFINITY
 from django.contrib import admin
-from .models import Book, Copy, Liberian, Reservee, Loan, Review
+from .models import Book, Copy, Liberian, Reservee, Loan, Review, Defaulters
 
 
 # Register your models here.
@@ -14,3 +14,4 @@ admin.site.register(Reservee)
 admin.site.register(Loan)
 admin.site.register(Review)
 admin.site.register(Liberian)
+admin.site.register(Defaulters)

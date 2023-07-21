@@ -1,12 +1,60 @@
-<h1>Liberian List</h1>
-<h2>{{alllib.count}}
-</h2>
+{% extends "libraryhelper/bookdetail.html" %}
+
+{% load static %}
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'fontawesome-free-5.15.4-web/css/all.css' %}">
+{% endblock %}
+{% block slider %}
+<h2>{{message}}</h2>
+<nav class="home">
+    <ul class="homeul">
+        <li class="homeli"><a href="{% url 'home' %}">HOMEPAGE</a></li>
+        <li class="homeli"><a href="{% url 'approve' %}">APPROVED</a></li>
+        <li class="homeli"><a href="{% url 'overdue' %}">OVERDUE'S</a></li>
+        <li class="homeli"><a href="{% url 'defaulters' %}">DEFAULTERS</a></li>
+        <li class="homeli"><a href="{% url 'addbook' %}">ADD BOOK</a></li>
+        <li class="homeli"><a href="{% url 'addcopy' %}">ADD COPY</a></li>
+        <li class="homeli"><a href="{% url 'approvecopylist' %}">UNAPPV COPY</a></li>
+        <li class="homeli"><a href="{% url 'approvebooklist' %}">UNAPPV BOOK</a></li>
+        <li class="homeli"><a href="{% url 'liberianlist' %}">LIBERIANS</a></li>
+        <li class="homeli"><a href="{% url 'addliberian' %}">ADD LIBERIAN</a></li>
+    </ul>
+</nav>
+<div class="alert">
+    <h2>Liberian List</h2>
+</div>
+<section>{% if alllib.count < 1 %} <p>No Liberian Registered yet</p> {% endif %}
+        {% if alllib %}
+        <div class="top">
+            <li>Userame</li>
+            <li>Firstname</li>
+            <li>Surname</li>
+            <li>LogIn Time</li>
+            <li>Admin</li>
+            <li>Date Added</li>
+        </div>
+        <div class="bodi">
+            {% for book in alllib %}
+
+            <li><a href="{% url 'liberianinfo' book.id %}">{{book.user.username}}</a></li>
+            <li><a href="{% url 'liberianinfo' book.id %}">{{book.user.first_name}}</a></li>
+            <li><a href="{% url 'liberianinfo' book.id %}">{{book.user.last_name}}</a></li>
+            <li><a href="{% url 'liberianinfo' book.id %}">{{book.last_log}}</a></li>
+            <li><a href="{% url 'liberianinfo' book.id %}">{{book.isAdmin}}</a></li>
+            <li><a href="{% url 'liberianinfo' book.id %}">{{book.dateadded}}</a></li>
+
+            {% endfor %}
+        </div>
+        {% endif%}
+</section>
+{% endblock %}
 {% if alllib.count < 1 %} <p>No Liberian Registered yet</p> {% endif %}
     {% if alllib %}
     {% for book in alllib %}
     <a href="{% url 'liberianinfo' book.id %}">
         <ul>
-            <li>{{book.gende}}</li>
+            <li>{{book.gender}}</li>
             <li>{{book.address}}</li>
             <li>{{book.dob}}</li>
             <li>{{book.user.last_login}}</li>

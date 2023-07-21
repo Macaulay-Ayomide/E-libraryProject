@@ -1,54 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "libraryhelper/bookdetail.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>booksearchpage</title>
-</head>
+{% load static %}
+{% block customcss %}
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/homepage.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/search.css' %}">
+{% endblock %}
+{% block slider %}
+<div class="alert">
+    <h2>Query Page</h2>
+</div>
+<form class="book-form" action="{% url 'searchresult' %}">
+    {% if message %}
+    <p id="error"> {{message}}</p>
+    {% endif %}
+    <p>
+        <label>Book Search</label>
+    <ol>
+        <li><input type="radio" name="searchby" value="Author's Name">Author's Name</li>
+        <li><input type="radio" name="searchby" value="Book Title">Book/Journal/Research Title</li>
+        <li><input type="radio" name="searchby" value="None" checked>None</li>
+    </ol>
+    <label for="bookname">Name:</label>
+    <input type="text" name="bookname" id="bookname">
+    <br>
+    <h3>Filters</h3>
+    <label for="myselect">Department:</label>
+    <select id="myselect" name="myselect">
+        <option value='None'>NONE</option>
+        <option value='AGY'>APPLIED GEOLOGY</option>
+        <option value='AEC'>AGRIC EXTENSION & COMMUNICATION TECHNOLOGY</option>
+        <option value='AGE'>AGRICULTURAL ENGINEERING</option>
+        <option value='ARE'>AGRICULTURE RESOURCE ECONOMICS</option>
+        <option value='APH'>ANIMAL PRODUCTION & HEALTH SERVICES</option>
+        <option value="AGE">Agriculture Engineering</option>
+        <option value='AGP'>APPLIED GEOPHYSICS</option>
+        <option value='ARC'>ARCHITECTURE</option>
+        <option value='BCH'>BIOCHEMISTRY</option>
+        <option value='BIO'>BIOLOGY</option>
+        <option value='BTH'>BIOTECHNOLOGY</option>
+        <option value='BLD'>BUILDING</option>
+        <option value='CVE'>CIVIL ENGINEERING</option>
+        <option value='CPE'>COMPUTER ENGINEERING</option>
+        <option value='CSC'>COMPUTER SCIENCE</option>
+        <option value='CSP'>CROP SOIL & PEST MANAGEMENT</option>
+        <option value='CYS'>CYBER SECURITY</option>
+        <option value='ECM'>ECOTOURISM & WILDLIFE MANAGEMENT</option>
+        <option value='EEE'>ELECTRICAL ELECTRONICS ENGINEERING</option>
+        <option value='ESM'>ESTATE MANAGEMENT</option>
+        <option value='FAT'>FISHERIES & AQUACULTURE</option>
+        <option value='FST'>FOOD SCIENCE & TECHNOLOGY</option>
+        <option value='FWT'>FORESTRY & WOOD TECHNOLOGY</option>
+        <option value='HUA'>HUMAN ANATOMY</option>
+        <option value='IPE'>INDUSTRIAL & PRODUCTION ENGINEERING</option>
+        <option value='CHE'>INDUSTRIAL CHEMISTRY</option>
+        <option value='IDD'>INDUSTRIAL DESIGN</option>
+        <option value='IMT'>INDUSTRIAL MATHEMATICS</option>
+        <option value='ICT'>INFORMATION & COMMUNICATION TECHNOLOGY</option>
+        <option value='IFS'>INFORMATION SYSTEMS</option>
+        <option value='IFT'>INFORMATION TECHNOLOGY</option>
+        <option value='MST'>MARINE SCIENCE & TECHNOLOGY</option>
+        <option value='MTS'>MATHEMATICS</option>
+        <option value='MEE'>MECHANICAL ENGINEERING</option>
+        <option value='MME'>METALLURGICAL & MATERIALS ENGINEERING</option>
+        <option value='MTL'>METEOROLOGY</option>
+        <option value='MCB'>MICROBIOLOGY</option>
+        <option value='MNE'>MINING ENGINEERING</option>
+        <option value='PHY'>'PHYSICS'</option>
+        <option value='PSY'>PHYSIOLOGY</option>
+        <option value='QSV'>QUANTITY SURVEYING</option>
+        <option value='RSG'>REMOTE SENSING & GEOSCIENCES INFORMATION SYSTEM</option>
+        <option value='SFE'>SOFTWARE ENGINEERING</option>
+        <option value='STA'>'STATISTICS'</option>
+        <option value='SVG'>SURVEYING & GEOINFORMATICS</option>
+        <option value='URP'>URBAN & REGIONAL PLAN</option>
+    </select>
+    <br>
+    <label for="bookname">Book Search</label>
+    <ol>
+        <li><input type="radio" name="booktype" value="book">Book</li>
+        <li><input type="radio" name="booktype" value="journal">Journal</li>
+        <li><input type="radio" name="booktype" value="research">Research</li>
+        <li><input type="radio" name="booktype" value="None" checked>None</li>
+    </ol>
+    </p>
 
-<body>
-    <p> {{message}}</p>
-    <form action="{% url 'searchresult' %}">
-        <p>
-        <p>Book Search</p>
-        <ol>
-            <li><input type="radio" name="searchby" value="Author's Name">Author's Name</li>
-            <li><input type="radio" name="searchby" value="Book Title">Book's Title</li>
-            <li><input type="radio" name="searchby" value="None" checked>None</li>
-        </ol>
-        <P>
-            <label for="bookname">Name:
-                <input type="text" name="bookname" id="bookname"></label>
-        </P>
-        </p>
-        <p>Filters</p>
-        <p>
-        <p>Department</p>
-        <ol>
-            <li><input type="radio" name="department" value="None">None</li>
-            <li><input type="radio" name="department" value="AGE">Agriculture Engineering</li>
-            <li><input type="radio" name="department" value="CVE">Civil Engineering</li>
-            <li><input type="radio" name="department" value="CPE">Computer Engineering</li>
-            <li><input type="radio" name="department" value="EEE">Electrical Electronics Engineering</li>
-            <li><input type="radio" name="department" value="IPE">Industrial and Production Engineering</li>
-            <li><input type="radio" name="department" value="ICT">Information and Communication Technology</li>
-            <li><input type="radio" name="department" value="MEE">Mechanical Engineering</li>
-            <li><input type="radio" name="department" value="MME">Materials and Metallurgical Engineering</li>
-            <li><input type="radio" name="department" value="MNE">Mining Engineering</li>
-        </ol>
-        <p>Book Type</p>
-        <ol>
-            <li><input type="radio" name="booktype" value="book">Book</li>
-            <li><input type="radio" name="booktype" value="journal">Journal</li>
-            <li><input type="radio" name="booktype" value="None" checked>None</li>
-        </ol>
-        <P>
-        </p>
+    <p><input type="submit" value="Submit"> <input type="reset" value="Reset"></p>
+</form>
+{% endblock %}
 
-        <p><input type="submit" value="Submit"> <input type="reset" value="Reset"></p>
-    </form>
 </body>
 
 </html>

@@ -1,30 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "libraryhelper/base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>serachresult</title>
-</head>
-
-<body>
-    <p>BOOKS</p>
+{% load static %}
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'CSS/reservelist2.css' %}">
+{% endblock %}
+{% block slider %}
+<div class="alert">
+    <h2>BOOKS</h2>
+</div>
+<section>
+    <h2>{{message}}</h2>
     {% if booklist.count < 1 %} <p>Book is not available</p> {% endif %}
         {% if booklist %}
-        {% for book in booklist %}
-        <a href="{% url 'bookdetail' book.id %}">
-            <ul>
-                <li>{{book.booktitle}}</li>
-                <li>{{book.authors}}</li>
-                <li>{{book.booktype}}</li>
-                <li>{{book.pdf_available}}</li>
-            </ul>
-        </a>
-        {% endfor %}
-        {%endif%}
-
-
-</body>
-
-</html>
+        <div class="top">
+            <p id="mobile">The list order: Title, Author, Publication, Pdf Avalability,
+                Year, Isbn<br>
+                <li>Title</li>
+                <li>Authors</li>
+                <li>Publication</li>
+                <li>Pdf</li>
+                <li>Year</li>
+                <li>Isbn</li>
+        </div>
+        <div class="bodi">
+            {% for book in booklist %}
+            <li><a href="{% url 'bookdetail' book.id %}">{{book.booktitle|striptags|truncatechars:15}}</a></li>
+            <li><a href="{% url 'bookdetail' book.id %}">{{book.authors|striptags|truncatechars:15}}</a></li>
+            <li><a href="{% url 'bookdetail' book.id %}">{{book.booktype}}</a></li>
+            <li><a href="{% url 'bookdetail' book.id %}">{{book.pdf_available}}</a></li>
+            <li><a href="{% url 'bookdetail' book.id %}">{{book.year}}</a></li>
+            <li><a href="{% url 'bookdetail' book.id %}">{{book.isbn}}</a></li>
+            {% endfor %}
+        </div>
+        {% endif%}
+</section>
+{% endblock %}
+<p></p>

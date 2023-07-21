@@ -1,7 +1,34 @@
-<h1>Approve Reservation</h1>
+{% extends "libraryhelper/home.html" %}
+
+{% load static %}
+{% block customcss %}<!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/homepage.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/approvecopy.css' %}">
+{% endblock %}
+{% block slider %}
+<nav class="home">
+    <ul class="homeul">
+        <li class="homeli"><a href="{% url 'home' %}">HOMEPAGE</a></li>
+        <li class="homeli"><a href="{% url 'approve' %}">APPROVED</a></li>
+        <li class="homeli"><a href="{% url 'overdue' %}">OVERDUE'S</a></li>
+        <li class="homeli"><a href="{% url 'defaulters' %}">DEFAULTERS</a></li>
+        <li class="homeli"><a href="{% url 'addbook' %}">ADD BOOK</a></li>
+        <li class="homeli"><a href="{% url 'addcopy' %}">ADD COPY</a></li>
+        {% if admin.isAdmin %}
+        <li class="homeli"><a href="{% url 'approvecopylist' %}">UNAPPV COPY</a></li>
+        <li class="homeli"><a href="{% url 'approvebooklist' %}">UNAPPV BOOK</a></li>
+        <li class="homeli"><a href="{% url 'liberianlist' %}">LIBERIANS</a></li>
+        <li class="homeli"><a href="{% url 'addliberian' %}">ADD LIBERIAN</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<div class="alert">
+    <h2>Approve Reservation</h2>
+</div>
 <p>{{message}}</p>
 <form method="POST" action="{% url 'searchreservation' %}">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit" name="approve">Approve</button>
 </form>
+{% endblock %}

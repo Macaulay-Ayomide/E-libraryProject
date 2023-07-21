@@ -1,12 +1,50 @@
-<p>BOOKS</p>
-{% if unapplist.count < 1 %} <p>Book is not available</p> {% endif %}
-    {% if unapplist %}
-    {% for book in unapplist %}
-    <a href="{% url 'approvecopy' book.id %}">
-        <ul>
-            <li>{{book.book}}</li>
-            <li>{{book.copyname}}</li>
-        </ul>
-    </a>
-    {% endfor %}
-    {%endif%}
+{% extends "libraryhelper/bookdetail.html" %}
+
+{% load static %}
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'fontawesome-free-5.15.4-web/css/all.css' %}">
+{% endblock %}
+{% block slider %}
+<h2>{{message}}</h2>
+<nav class="home">
+    <ul class="homeul">
+        <li class="homeli"><a href="{% url 'home' %}">HOMEPAGE</a></li>
+        <li class="homeli"><a href="{% url 'approve' %}">APPROVED</a></li>
+        <li class="homeli"><a href="{% url 'overdue' %}">OVERDUE'S</a></li>
+        <li class="homeli"><a href="{% url 'defaulters' %}">DEFAULTERS</a></li>
+        <li class="homeli"><a href="{% url 'addbook' %}">ADD BOOK</a></li>
+        <li class="homeli"><a href="{% url 'addcopy' %}">ADD COPY</a></li>
+        <li class="homeli"><a href="{% url 'approvecopylist' %}">UNAPPV COPY</a></li>
+        <li class="homeli"><a href="{% url 'approvebooklist' %}">UNAPPV BOOK</a></li>
+        <li class="homeli"><a href="{% url 'liberianlist' %}">LIBERIANS</a></li>
+        <li class="homeli"><a href="{% url 'addliberian' %}">ADD LIBERIAN</a></li>
+    </ul>
+</nav>
+<div class="alert">
+    <h2>Unapprove Copy List</h2>
+</div>
+<section>{% if unapplist.count < 1 %} <p>Book is not available</p> {% endif %}
+        {% if unapplist %}
+        <div class="top">
+            <li>Copy Name</li>
+            <li>Book Title</li>
+            <li>Book Author</li>
+            <li>Print Type</li>
+            <li>Year</li>
+            <li>Date Added</li>
+        </div>
+        <div class="bodi">
+            {% for book in unapplist %}
+            <li><a href="{% url 'approvecopy' book.id %}">{{book.copyname}}</a></li>
+            <li><a href="{% url 'approvecopy' book.id %}">{{book.book.booktitle|striptags|truncatechars:28}}</a></li>
+            <li><a href="{% url 'approvecopy' book.id %}">{{book.book.authors|striptags|truncatechars:28}}</a></li>
+            <li><a href="{% url 'approvecopy' book.id %}">{{book.book.booktype}}</a></li>
+            <li><a href="{% url 'approvecopy' book.id %}">{{book.book.year}}</a></li>
+            <li><a href="{% url 'approvecopy' book.id %}">{{book.book.dateadded}}</a></li>
+
+            {% endfor %}
+        </div>
+        {% endif%}
+</section>
+{% endblock %}

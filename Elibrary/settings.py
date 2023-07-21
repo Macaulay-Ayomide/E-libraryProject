@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'libraryhelper',
+    'bootstrap4',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     #'django_auto_logout.middleware.auto_logout',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'Elibrary.urls'
@@ -140,3 +143,11 @@ currenttime = time.strftime("%H:%M:%S", t)
 #         'IDLE_TIME': 0,
 #         'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
 #         }
+
+
+# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST='smtp.gmail.com'
+# EMAIL_PORT=587
+# EMAIL_HOST_USER='israelmacaulay8@gmail.com/OR/username@Elibrary.com'
+# EMAIL_HOST_PASSWORD='IZZImars11*'
+# EMAIL_USE_TLS=True

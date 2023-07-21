@@ -2,7 +2,7 @@
 
 {% load static %}
 {% block customcss %}
-<link rel="stylesheet" type="text/css" href="{% static 'CSS/bookreserve.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/bookreserve2.css' %}">
 {% endblock %}
 {% block slider %}
 <div class="alert">
@@ -11,6 +11,7 @@
 
 <section>
     {% if copy.count < 1 %} <h2>There is no copy avaialable</h2>
+        {% elif error %} <h2>There is no copy avaialable</h2>
         {% endif %}
         {% if copy.count > 1 %}
         <form method="POST">
